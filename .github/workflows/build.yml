@@ -8,11 +8,11 @@ on:
 jobs:
   sonarqube:
     name: SonarQube
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@fd88b7d7ccbaefd23d8f36f73b59db7a3d246602
         env:
@@ -23,3 +23,6 @@ jobs:
           args: >
             -Dsonar.organization=kessie12
             -Dsonar.projectKey=kessie12_asc-inventory-management-system
+            -Dsonar.sources=.
+            -Dsonar.language=php
+            -Dsonar.exclusions=vendor/**,screenshots/**,data/**
